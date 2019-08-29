@@ -17,6 +17,7 @@ services:
     volumes:
       - ./filebeat/test.log:/var/log/command.log:ro
       - ./filebeat/filebeat.yml:/filebeat.yml
+      - ./filebeat/fields.yml:/fields.yml
     networks: 
       - dev-network
     restart: always
