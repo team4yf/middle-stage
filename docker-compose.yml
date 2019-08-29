@@ -1,5 +1,17 @@
 version: '3'
 services:
+  kb:
+    image: "library/kibana:7.3.1"
+    container_name: "kb"
+    ports:
+      - "5601:5601"
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    depends_on:
+      - "es"
+    networks: 
+      - dev-network
+    restart: always
   es:
     image: "elasticsearch:7.3.1"
     container_name: "es"
@@ -19,7 +31,7 @@ services:
     environment:
       output.logstash.enabled: 0
     volumes:
-      - ./filebeat/test.log:/var/log/rocket.log:ro
+      - ./filebeat/test.log:/home/rocket.log:ro
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./filebeat/fields.yml:/fields.yml
     depends_on:

@@ -2,7 +2,7 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /var/log/*.log
+    - /home/*.log
 
 setup.template.name: "rocket"
 setup.template.pattern: "rocket-*"
@@ -12,6 +12,6 @@ setup.template.overwrite: true
 
 output.elasticsearch:  # 我这里是输出到elasticsearch，也可以输出到logstash
     # bulk_max_size: 10
-  index: "rocket"  #  kibana中的索引
-    # index: "rocket-%{+yyyy.MM.dd}"
+  # index: "rocket"  #  kibana中的索引
+  index: "rocket-%{+yyyy.MM.dd}"
   hosts: ["es:9200"] # elasticsearch地址

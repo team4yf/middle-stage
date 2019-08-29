@@ -8,7 +8,12 @@ docker run -d --name es --net es-network -p 9200:9200 -p 9300:9300 -e "discovery
 ```
 
 
+### 常用的语句
 
+空查询，查看所有数据
+```
+curl -X GET "localhost:9200/_search?pretty"
+```
 
 ### 相关介绍
 
