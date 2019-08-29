@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "hit:all": "curl -X GET \"localhost:9200/_search?pretty\"",
     "elk:build": "",
     "elk:start": "docker-compose up -d",
     "elk:stop": "docker-compose down",

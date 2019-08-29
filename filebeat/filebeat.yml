@@ -6,12 +6,15 @@ filebeat.inputs:
 
 setup.template.name: "rocket"
 setup.template.pattern: "rocket-*"
-setup.template.overwrite: true
-# setup.template.enabled: false
+# setup.template.overwrite: true
+setup.dashboards.index: "rocket-*"
+setup.template.enabled: false
 # setup.template.fields: "/fields.yml"
+setup.kibana.host: "kb:5601"
 
-output.elasticsearch:  # 我这里是输出到elasticsearch，也可以输出到logstash
+output.elasticsearch:  # 这里是输出到elasticsearch，也可以输出到logstash
     # bulk_max_size: 10
   # index: "rocket"  #  kibana中的索引
-  index: "rocket-%{+yyyy.MM.dd}"
+  index: "rocket-%{[agent.version]}-%{+yyyy.MM.dd}"
   hosts: ["es:9200"] # elasticsearch地址
+
