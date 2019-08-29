@@ -7,6 +7,8 @@ Manual: [https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-configu
 
 
 
+Day1 [https://www.elastic.co/guide/en/beats/filebeat/current/configuration-template.html](https://www.elastic.co/guide/en/beats/filebeat/current/configuration-template.html)
+
 ```yml
 filebeat:
   prospectors:

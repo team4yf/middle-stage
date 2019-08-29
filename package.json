@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "elk:build": "",
     "elk:start": "docker-compose up -d",
     "elk:stop": "docker-compose down",
     "restart": "npm run elk:stop && npm run elk:start"
