@@ -3,6 +3,16 @@ filebeat.inputs:
   enabled: true
   paths:
     - /home/*.log
+#json.keys_under_root: true  # 使Filebeat解码日志结构化为JSON消息，设置key为输出文档的顶级目录。 如果不需要json格式输出，可以删除这两个json参数
+#json.overwrite_keys: true # 覆盖其他字段
+
+processors:
+    - decode_json_fields:
+        fields: ['message'] #要进行解析的字段
+        target: "" #json内容解析到指定的字段，如果为空（“”），则解析到顶级结构下
+        overwrite_keys: false #如果解析出的json结构中某个字段在原始的event（在filebeat中传输的一条数据为一个event）中也存在，是否覆盖event中该字段的值，默认值:false
+        process_array: false #数组是否解码，默认值:false
+        max_depth: 1 #解码深度，默认值：1
 
 setup.template.name: "rocket"
 setup.template.pattern: "rocket-*"
