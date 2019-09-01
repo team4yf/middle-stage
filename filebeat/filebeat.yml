@@ -18,13 +18,16 @@ setup.template.name: "rocket"
 setup.template.pattern: "rocket-*"
 # setup.template.overwrite: true
 setup.dashboards.index: "rocket-*"
-setup.template.enabled: false
+setup.template.enabled: true
 # setup.template.fields: "/fields.yml"
 setup.kibana.host: "kb:5601"
 
+setup.ilm.enabled: false
+
 output.elasticsearch:  # 这里是输出到elasticsearch，也可以输出到logstash
     # bulk_max_size: 10
-  # index: "rocket"  #  kibana中的索引
-  index: "rocket-%{[agent.version]}-%{+yyyy.MM.dd}"
-  hosts: ["es:9200"] # elasticsearch地址
+    # index: "rocket"  #  kibana中的索引
+    index: "rocket-%{[agent.version]}-%{+yyyy.MM.dd}"
+    # document_type: "rocket-*"
+    hosts: ["es:9200"] # elasticsearch地址
 
