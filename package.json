@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "hit:all": "curl -X GET \"localhost:9200/_search?pretty\"",
-    "elk:build": "",
-    "elk:start": "docker-compose up -d",
-    "elk:stop": "docker-compose down",
-    "restart": "npm run elk:stop && npm run elk:start"
+    "elk:start": "docker-compose -f docker-compose-elk.yml up -d",
+    "elk:stop": "docker-compose -f docker-compose-elk.yml down",
+    "elk:restart": "npm run elk:stop && npm run elk:start",
+    "ig:start": "docker-compose -f docker-compose-ig.yml up -d",
+    "ig:stop": "docker-compose -f docker-compose-ig.yml down",
+    "ig:restart": "npm run ig:stop && npm run ig:start"
   },
   "author": "",
   "license": "ISC"
