@@ -1,0 +1,27 @@
+version: '3'
+services:
+  influxdb:
+    image: "influxdb:1.7-alpine"
+    container_name: "influxdb"
+    ports:
+      - "19783:8083"
+      - "19786:8086"
+    volumes:
+      - ./influxdb/data/:/var/lib/influxdb
+    environment:
+      TZ: "Asia/Shanghai"
+    networks: 
+      - dev-network
+    restart: always
+  gf:
+    image: "grafana/grafana"
+    container_name: "gf"
+    ports:
+      - "19730:3000"
+    environment:
+      TZ: "Asia/Shanghai"
+    networks: 
+      - dev-network
+    restart: always
+networks:
+  dev-network: 

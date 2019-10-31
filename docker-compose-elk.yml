@@ -26,6 +26,7 @@ services:
     networks: 
       - dev-network
     restart: always
+<<<<<<< HEAD:docker-compose.yml
   influxdb:
     image: "influxdb:1.7-alpine"
     container_name: "influxdb"
@@ -48,6 +49,8 @@ services:
     networks: 
       - dev-network
     restart: always
+=======
+>>>>>>> 3357489bafc833ee7272a5f11149a8738a530782:docker-compose-elk.yml
   fb:
     image: "docker.elastic.co/beats/filebeat:7.3.1"
     container_name: "fb"

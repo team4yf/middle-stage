@@ -1,2 +1,7 @@
 node_*
+<<<<<<< HEAD
 influxdb/*
+=======
+
+influxdb/data
+>>>>>>> 3357489bafc833ee7272a5f11149a8738a530782
