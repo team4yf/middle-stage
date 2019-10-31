@@ -26,6 +26,18 @@ services:
     networks: 
       - dev-network
     restart: always
+  influxdb:
+    image: "influxdb:1.7-alpine"
+    container_name: "influxdb"
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    environment:
+      TZ: "Asia/Shanghai"
+    networks: 
+      - dev-network
+    restart: always
   gf:
     image: "grafana/grafana"
     container_name: "gf"
