@@ -8,8 +8,11 @@ services:
       - "19786:8086"
     volumes:
       - ./influxdb/data/:/var/lib/influxdb
+      - ./influxdb/NOAA_data.txt:/NOAA_data.txt
     environment:
       TZ: "Asia/Shanghai"
+      INFLUX_USERNAME: "admin"
+      INFLUX_PASSWORD: "password"
     networks: 
       - dev-network
     restart: always
