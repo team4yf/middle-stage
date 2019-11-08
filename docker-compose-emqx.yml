@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mqttserver:
+    image: 'emqx/emqx:latest'
+    container_name: "fpm-mqtt-server"
+    ports:
+      - "1883:1883"
+      - "18083:18083"
+      - "8080:8080"
+      - "8083:8083"
+    volumes:
+      - ./emqx/data/mnesia:/opt/emqx/data/mnesia
+      - ./emqx/etc/emqx_dashboard.conf:/opt/emqx/etc/plugins/emqx_dashboard.conf
+    environment:
+      TZ: "Asia/Shanghai"
+      EMQX_ALLOW_ANONYMOUS: "false"
+      EMQX_LISTENER__TCP__EXTERNAL: 1883
+      EMQX_LISTENER__TCP__EXTERNAL__ACCEPTORS: 64
+      EMQX_LISTENER__TCP__EXTERNAL__MAX___CONNECTIONS: 1024000
+      EMQX_NODE__PROCESS___LIMIT: 2097152
+      EMQX_NODE__MAX___PORTS: 1048576
+      EMQX_LOADED_PLUGINS: "emqx_management,emqx_auth_username,emqx_recon,emqx_retainer,emqx_rule_engine,emqx_dashboard"
+    networks:
+      - dev-network
+    restart: always
+networks:
+  dev-network: 
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.19.0.0/16

@@ -10,7 +10,10 @@
     "elk:restart": "npm run elk:stop && npm run elk:start",
     "ig:start": "docker-compose -f docker-compose-ig.yml up -d",
     "ig:stop": "docker-compose -f docker-compose-ig.yml down",
-    "ig:restart": "npm run ig:stop && npm run ig:start"
+    "ig:restart": "npm run ig:stop && npm run ig:start",
+    "emqx:start": "docker-compose -f docker-compose-emqx.yml up -d",
+    "emqx:stop": "docker-compose -f docker-compose-emqx.yml down",
+    "emqx:restart": "npm run emqx:stop && npm run emqx:start"
   },
   "author": "",
   "license": "ISC"
