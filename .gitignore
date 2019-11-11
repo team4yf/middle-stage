@@ -1,3 +1,4 @@
 node_*
 influxdb/data
 emqx/data
+*.tar
