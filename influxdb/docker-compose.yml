@@ -1,0 +1,25 @@
+version: '3'
+services:
+  influxdb:
+    image: "influxdb:1.7-alpine"
+    container_name: "influxdb"
+    ports:
+      - "19783:8083"
+      - "19786:8086"
+    volumes:
+      - ./influxdb/data/:/var/lib/influxdb
+      - ./influxdb/NOAA_data.txt:/NOAA_data.txt
+    environment:
+      TZ: "Asia/Shanghai"
+      INFLUX_USERNAME: "admin"
+      INFLUX_PASSWORD: "password"
+    networks: 
+      - dev-network
+    restart: always
+networks:
+  dev-network: 
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 192.168.1.0/16

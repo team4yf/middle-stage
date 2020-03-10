@@ -1,6 +1,6 @@
 node_*
-influxdb/data
 emqx/data
 *.tar
 *.rdb
 *.aof
+*.db
