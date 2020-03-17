@@ -4,3 +4,4 @@ emqx/data
 *.rdb
 *.aof
 *.db
+*.gz
