@@ -54,3 +54,7 @@
 
   部署： 使用docker-compose
   cli: 参考[http://www.corejavaguru.com/bigdata/zookeeper/cli](http://www.corejavaguru.com/bigdata/zookeeper/cli)
+   [https://www.tutorialspoint.com/zookeeper/zookeeper_cli.htm](https://www.tutorialspoint.com/zookeeper/zookeeper_cli.htm)
+
+  - `create -s /root/lock/node-` 可以创建一个自增的字节点，可以被删除，但是删除之后节点序列会继续自增。
+  - `create -e -s /root/lock/node-` 增加 -e 的参数可以标记该节点是临时节点，随着session失效之后会丢失。
