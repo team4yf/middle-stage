@@ -49,7 +49,12 @@
 
 - 使用场景
 
+  [https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/index.html](https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/index.html)
+  
   核心场景：注册发现中心
+
+  集群管理：在 Zookeeper 上创建一个 EPHEMERAL 类型的目录节点，然后每个 Server 在它们创建目录节点的父目录节点上调用 getChildren(String path, boolean watch) 方法并设置 watch 为 true，由于是 EPHEMERAL 目录节点，当创建它的 Server 死去，这个目录节点也随之被删除，所以 Children 将会变化，这时 getChildren上的 Watch 将会被调用，所以其它 Server 就知道已经有某台 Server 死去了。新增 Server 也是同样的原理。
+
 - 使用方法
 
   部署： 使用docker-compose
