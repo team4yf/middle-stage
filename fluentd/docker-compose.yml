@@ -1,0 +1,40 @@
+version: '3'
+services:
+  kb:
+    image: "library/kibana:7.3.1"
+    container_name: "kb"
+    ports:
+      - "5601:5601"
+    environment:
+      TZ: "Asia/Shanghai"
+      ELASTICSEARCH_HOSTS: "http://es:9200"
+    depends_on:
+      - "es"
+    networks: 
+      - dev-network
+    restart: always
+  es:
+    image: "elasticsearch:7.3.1"
+    container_name: "es"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: single-node
+      TZ: "Asia/Shanghai"
+    networks: 
+      - dev-network
+    restart: always
+  fluentd:
+    image: quay.io/fluentd_elasticsearch/fluentd:v3.0.2
+    ports:
+      - 9880:9880
+    volumes:
+      - ./config.conf:/etc/fluent/config.d/my.conf
+      - ./data/:/var/data/
+      - ./log/:/var/log/
+    networks: 
+      - dev-network
+networks:
+  dev-network: 
+      

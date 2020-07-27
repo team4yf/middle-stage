@@ -5,3 +5,6 @@ emqx/data
 *.aof
 *.db
 *.gz
+
+fluentd/data/
+fluentd/log/
