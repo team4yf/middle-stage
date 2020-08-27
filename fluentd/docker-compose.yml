@@ -29,6 +29,13 @@ services:
     restart: always
   fluentd:
     image: quay.io/fluentd_elasticsearch/fluentd:v3.0.2
+    logging:
+      driver: "json-file"
+      options:
+        labels: "production_status"
+        env: "os"
+    labels:
+      production_status: "testing"
     ports:
       - 9880:9880
     volumes:
