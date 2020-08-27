@@ -3,6 +3,15 @@ services:
   kb:
     image: "library/kibana:7.3.1"
     container_name: "kb"
+    logging:
+      driver: "json-file"
+      options:
+        labels: "servicename"
+        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
+        max-size: "100m"
+        max-file: "10"
+    labels:
+      servicename: "kb"
     ports:
       - "5601:5601"
     environment:
@@ -16,6 +25,15 @@ services:
   es:
     image: "elasticsearch:7.3.1"
     container_name: "es"
+    logging:
+      driver: "json-file"
+      options:
+        labels: "servicename"
+        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
+        max-size: "100m"
+        max-file: "10"
+    labels:
+      servicename: "es"
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -32,10 +50,12 @@ services:
     logging:
       driver: "json-file"
       options:
-        labels: "production_status"
-        env: "os"
+        labels: "servicename"
+        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
+        max-size: "100m"
+        max-file: "10"
     labels:
-      production_status: "testing"
+      servicename: "fluentd"
     ports:
       - 9880:9880
     volumes:
