@@ -31,8 +31,9 @@ services:
       - 9880:9880
     volumes:
       - ./config.conf:/etc/fluent/config.d/my.conf
-      - ./data/:/var/data/
-      - ./log/:/var/log/
+      - /home/yf/projects/fpm-iot/iot-app.yunplus.io/app.log:/var/log/app/app.log
+      - /home/yf/projects/fpm-iot/iot-app.yunplus.io/error.log:/var/log/app/error.log
+      - /var/lib/docker/containers/:/var/log/docker/
     networks: 
       - dev-network
 networks:
