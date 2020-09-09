@@ -62,7 +62,7 @@ services:
       - ./config.conf:/etc/fluent/config.d/my.conf
       - /home/yf/projects/fpm-iot/iot-app.yunplus.io/app.log:/var/log/app/app.log
       - /home/yf/projects/fpm-iot/iot-app.yunplus.io/error.log:/var/log/app/error.log
-      - /var/lib/docker/containers/:/var/log/docker/
+      # - /var/lib/docker/containers/:/var/log/docker/
     networks: 
       - dev-network
 networks:
