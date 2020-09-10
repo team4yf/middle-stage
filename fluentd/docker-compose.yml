@@ -45,6 +45,22 @@ services:
     networks: 
       - dev-network
     restart: always
+  fb:
+    image: "docker.elastic.co/beats/filebeat:7.3.1"
+    container_name: "fb"
+    environment:
+      output.logstash.enabled: 0
+      TZ: "Asia/Shanghai"
+    volumes:
+      - /home/yf/projects/fpm-iot/iot-app.yunplus.io/app.log:/home/app.log:ro
+      - /home/yf/projects/fpm-iot/iot-app.yunplus.io/error.log:/home/error.log:ro
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./filebeat/fields.yml:/fields.yml
+    depends_on:
+      - "es"
+      - "kb"
+    networks: 
+      - dev-network
   fluentd:
     image: quay.io/fluentd_elasticsearch/fluentd:v3.0.2
     logging:
@@ -60,11 +76,12 @@ services:
       - 9880:9880
     volumes:
       - ./config.conf:/etc/fluent/config.d/my.conf
-      - /home/yf/projects/fpm-iot/iot-app.yunplus.io/app.log:/var/log/app/app.log
-      - /home/yf/projects/fpm-iot/iot-app.yunplus.io/error.log:/var/log/app/error.log
       - /home/yf/projects/fpm-iot/deploy-fpm-iot-server/log/:/var/log/server/
     networks: 
       - dev-network
+    depends_on:
+      - "es"
+      - "kb"
 networks:
   dev-network: 
       

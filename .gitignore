@@ -8,3 +8,4 @@ emqx/data
 
 fluentd/data/
 fluentd/log/
+esdata/
