@@ -1,0 +1,25 @@
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+    - 19090:9090
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    environment:
+      TZ: "Asia/Shanghai"
+    networks: 
+      - dev-network
+    # restart: always
+  gf:
+    image: "grafana/grafana"
+    container_name: "gf"
+    ports:
+      - "13000:3000"
+    environment:
+      TZ: "Asia/Shanghai"
+    networks: 
+      - dev-network
+    # restart: always
+networks:
+  dev-network: 
